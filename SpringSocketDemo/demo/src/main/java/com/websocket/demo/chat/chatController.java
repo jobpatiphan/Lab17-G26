@@ -17,9 +17,8 @@ public class chatController {
     @MessageMapping("/chat.addUser")
     @SendTo("/topic/public")
     public ChatMessage addUser(ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
-        //sent count to the client through getcount
         ChatMessage.addCount();
-        chatMessage.getcount(ChatMessage.count);
+        chatMessage.setGetcount(ChatMessage.count);
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         return chatMessage;
     }
